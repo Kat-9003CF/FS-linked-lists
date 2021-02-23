@@ -38,21 +38,58 @@ class LinkedList {
   // WARM UP
 
   // returns the value of the head of the linked list
-  headValue() {}
+  headValue() {
+    let node = this.head;
+    return node.value;
+  }
 
   // returns the value of the tail of the linked list
-  tailValue() {}
+  tailValue() {
+    let node = this.tail;
+    return node.value;
+  }
 
   // returns the value of the node that comes after the head
-  nextToHead() {}
+  nextToHead() {
+    let node = this.head;
+    while (node.next) {
+      node = node.next;
+      return node.value;
+    }
+    return null;
+  }
 
   // MAIN EXERCISES
 
   // returns the NODE stored at the Nth index position of the list
-  getNthNode(index) {}
+  getNthNode(index) {
+    let node = this.head;
+    let ix = index;
+    while (node) {
+      if (node !== index) {
+        node = node.next;
+      }
+      if (node.value !== 0) {
+        return node.value;
+      } else {
+        return null;
+      }
+    }
+  }
 
   // removes the node assigned to the tail
-  removeFromTail() {}
+  removeFromTail() {
+    let node = this.head;
+    while (node) {
+      if (node.next !== this.tail) {
+        //do nothing
+        let previous = node;
+        node = node.next;
+      } else {
+        previous.next = null;
+      }
+    }
+  }
 
   // adds a node to the head of the list
   addToHead(val) {}

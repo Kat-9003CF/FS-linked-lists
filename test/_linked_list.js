@@ -75,7 +75,7 @@ describe("LinkedList", () => {
       expect(linkedList.tail.value).to.equal(2);
       expect(linkedList.tail.next).to.equal(null);
     });
-    xit("should return the node that was removed", () => {
+    it("should return the node that was removed", () => {
       linkedList.addToTail(2);
       linkedList.addToTail(3);
       expect(linkedList.removeFromTail().value).to.equal(3);
