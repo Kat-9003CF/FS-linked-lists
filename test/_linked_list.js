@@ -99,11 +99,11 @@ describe("LinkedList", () => {
       linkedList.removeFromHead();
       expect(linkedList.head.value).to.equal(2);
     });
-    xit("should return the node that was removed", () => {
+    it("should return the node that was removed", () => {
       linkedList.addToHead(0);
       expect(linkedList.removeFromHead().value).to.equal(0);
     });
-    xit("should set the head & tail to null if the linked list only contains one node", () => {
+    it("should set the head & tail to null if the linked list only contains one node", () => {
       linkedList.removeFromHead();
       expect(linkedList.head).to.equal(null);
       expect(linkedList.tail).to.equal(null);
@@ -117,7 +117,7 @@ describe("LinkedList", () => {
       linkedList.addToTail(4);
       expect(linkedList.findNode(3)).to.equal(linkedList.head.next.next);
     });
-    xit('should return "No node found." if the refNodeValue does not exist', () => {
+    it('should return "No node found." if the refNodeValue does not exist', () => {
       linkedList.addToTail(2);
       linkedList.addToTail(3);
       linkedList.addToTail(4);
@@ -150,7 +150,7 @@ describe("LinkedList", () => {
       linkedList.insertAfter(2, 3);
       expect(linkedList.tail.value).to.equal(3);
     });
-    xit('should return "No node found." if the refNodeValue does not exist', () => {
+    it('should return "No node found." if the refNodeValue does not exist', () => {
       expect(linkedList.insertAfter(9, 3)).to.equal("No node found.");
     });
   });

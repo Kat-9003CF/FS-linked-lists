@@ -65,46 +65,97 @@ class LinkedList {
   getNthNode(index) {
     let node = this.head;
     let ix = index;
-    while (node) {
-      if (node !== index) {
-        node = node.next;
-      }
-      if (node.value !== 0) {
-        return node.value;
-      } else {
-        return null;
-      }
+    let i = 0;
+    while (node && i < ix) {
+      node = node.next;
+      i++;
     }
+    if (i === ix && node) {
+      return node;
+    }
+    return null;
   }
 
   // removes the node assigned to the tail
   removeFromTail() {
     let node = this.head;
-    while (node) {
-      if (node.next !== this.tail) {
-        //do nothing
-        let previous = node;
-        node = node.next;
-      } else {
-        previous.next = null;
-      }
+    let prevNode;
+    while (node && node !== this.tail) {
+      //do nothing
+      prevNode = node;
+      node = node.next;
+    }
+    if (node === this.tail) {
+      let value = node; //store node
+      this.tail = prevNode;
+      prevNode.next = null; //we were trying to update the node, not the previous node
+      return value; //return it last
     }
   }
 
   // adds a node to the head of the list
-  addToHead(val) {}
+  addToHead(val) {
+    //create new node
+    let newNode = new Node(val);
+    //update node pointer
+    newNode.next = this.head;
+    //update head
+    this.head = newNode;
+  }
 
   // removes the node assigned to the head
-  removeFromHead() {}
+  removeFromHead() {
+    let node = this.head;
+    if (node.next) {
+      let removedNode = node;
+      this.head = node.next;
+      return removedNode;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+  }
 
   // returns the node that contains the value
-  findNode(refNodeValue) {}
+  findNode(refNodeValue) {
+    let node = this.head;
+    let ix = 1;
+    while (node && ix < refNodeValue) {
+      node = node.next;
+      ix++;
+    }
+    if (ix === refNodeValue) {
+      return node;
+    } else {
+      return `No node found.`;
+    }
+  }
 
   // applies a callback to every node in the list
-  forEach(fn) {}
+  forEach(fn) {
+    let node = this.head;
+    while (node) {
+      fn(node);
+      node = node.next;
+    }
+  }
 
   // inserts a new node after the reference node
-  insertAfter(refNodeValue, val) {}
+  insertAfter(refNodeValue, val) {
+    let node = this.head;
+    let newNode = new Node(val);
+    let ix = 1;
+    while (node && ix < refNodeValue) {
+      node = node.next;
+    }
+    if (ix === refNodeValue) {
+      nextNode = node.next;
+      node.next = newNode;
+      newNode.next = nextNode;
+    } else {
+      return `No node found.`;
+    }
+  }
 
   // remove the node after the reference node
   removeAfter(refNodeValue) {}
