@@ -147,26 +147,69 @@ class LinkedList {
     let ix = 1;
     while (node && ix < refNodeValue) {
       node = node.next;
+      ix++;
     }
     if (ix === refNodeValue) {
-      nextNode = node.next;
+      let nextNode = node.next;
       node.next = newNode;
       newNode.next = nextNode;
+      if (node === this.tail) {
+        this.tail = newNode;
+      }
     } else {
       return `No node found.`;
     }
   }
 
   // remove the node after the reference node
-  removeAfter(refNodeValue) {}
+  removeAfter(refNodeValue) {
+    let node = this.head;
+    let ix = 1;
+    while (node && ix < refNodeValue) {
+      node = node.next;
+      ix++;
+    }
+    if (ix === refNodeValue) {
+      if (node.next === this.tail) {
+        this.tail = node;
+      }
+      let value = node.next;
+      node.next = node.next.next;
+      return value;
+    } else {
+      return `No node found.`;
+    }
+  }
 
   // OPTIONAL
 
-  //merges the current list with a new list, appending the new list after the tail of the current list
-  mergeAppend(newList) {}
+  //merges the current list with a new list, appending
+  //the new list after the tail of the current list
+  mergeAppend(newList) {
+    let node = this.tail;
+    node.next = newList.head;
+    this.tail = newList.tail;
+  }
 
-  //merges the current list with a new list, by inserting the new list after the node in the index position.
-  mergeAfterIndex(newList, index) {}
+  //merges the current list with a new list, by inserting the
+  //new list after the node in the index position.
+  mergeAfterIndex(newList, index) {
+    let node = this.head;
+    let ix = 0; //why is it zero?
+    while (node && ix < index) {
+      node = node.next;
+      ix++;
+    }
+    if (ix === index) {
+      if (node === this.tail) {
+        node.next = newList.head;
+        this.tail = newList.tail;
+      }
+      let nextNode = node.next;
+      node.next = newList.head;
+      newList.tail.next = nextNode;
+    }
+  }
 }
 
 module.exports = LinkedList;
